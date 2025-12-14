@@ -3,18 +3,18 @@ import Foundation
 
 /// Main view for the Chisme file organizer app.
 /// Allows users to select source and target folders and move files based on filename matching.
-struct ContentView: View {
+public struct ContentView: View {
     @State private var sourceFolder: URL?
     @State private var targetFolder: URL?
     @State private var statusMessage: String = ""
     @State private var isProcessing: Bool = false
     
-    init() {
+    public init() {
         // Set default source folder to user's Downloads folder
         _sourceFolder = State(initialValue: FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first)
     }
     
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 20) {
             Text("Chisme - File Organizer")
                 .font(.title)

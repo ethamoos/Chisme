@@ -8,15 +8,23 @@ let package = Package(
     platforms: [
         .macOS(.v13)  // macOS Ventura and later
     ],
+    products: [
+        .executable(name: "Chisme", targets: ["ChismeApp"])
+    ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .executableTarget(
+        // Library target containing the app logic
+        .target(
             name: "Chisme"
         ),
+        // Executable target that launches the app
+        .executableTarget(
+            name: "ChismeApp",
+            dependencies: ["Chisme"]
+        ),
+        // Test target
         .testTarget(
             name: "ChismeTests",
-            dependencies: []
+            dependencies: ["Chisme"]
         ),
     ]
 )

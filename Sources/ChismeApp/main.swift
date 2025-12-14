@@ -1,4 +1,5 @@
 import SwiftUI
+import Chisme
 
 @main
 struct ChismeApp: App {
