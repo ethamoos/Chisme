@@ -1,5 +1,6 @@
 import SwiftUI
 import Foundation
+import AppKit
 
 /// Main view for the Chisme file organizer app.
 /// Allows users to select source and target folders and move files based on filename matching.
