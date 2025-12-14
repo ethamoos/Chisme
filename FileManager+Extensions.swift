@@ -26,7 +26,7 @@ extension FileManager {
     /// Check if a URL is a directory
     func isDirectory(at url: URL) -> Bool {
         var isDirectory: ObjCBool = false
-        fileExists(atPath: url.path, isDirectory: &isDirectory)
+        _ = fileExists(atPath: url.path, isDirectory: &isDirectory)
         return isDirectory.boolValue
     }
 }
