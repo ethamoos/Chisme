@@ -8,12 +8,8 @@
 import Foundation
 
 extension FileManager {
-    /// Get the contents of a directory at the specified depth
-    func contentsOfDirectory(at url: URL, depth: Int = 1) throws -> [URL] {
-        if depth <= 0 {
-            return []
-        }
-        
+    /// Get the contents of a directory (non-recursive, 1-level deep)
+    func contentsOfDirectory(at url: URL) throws -> [URL] {
         let contents = try contentsOfDirectory(
             at: url,
             includingPropertiesForKeys: [.isDirectoryKey],
@@ -52,11 +48,11 @@ class FileMatcher {
     /// Find matching folders in target directory for files in source directory
     func findMatches(sourceFolder: URL, targetFolder: URL) throws -> [FileMatch] {
         // Get files from source folder (1-level deep only)
-        let sourceContents = try fileManager.contentsOfDirectory(at: sourceFolder, depth: 1)
+        let sourceContents = try fileManager.contentsOfDirectory(at: sourceFolder)
         let sourceFiles = sourceContents.filter { !fileManager.isDirectory(at: $0) }
         
         // Get folders from target folder (1-level deep only)
-        let targetContents = try fileManager.contentsOfDirectory(at: targetFolder, depth: 1)
+        let targetContents = try fileManager.contentsOfDirectory(at: targetFolder)
         let targetFolders = targetContents.filter { fileManager.isDirectory(at: $0) }
         
         var matches: [FileMatch] = []
