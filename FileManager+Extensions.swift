@@ -86,16 +86,10 @@ class FileMatcher {
             return false
         }
         
-        // Get first 4+ characters and check if folder name starts with file name prefix
+        // Get first 4 characters and check if folder name starts with file name prefix
         let filePrefix = String(fileName.prefix(minMatchLength))
-        let folderPrefix = String(folderName.prefix(minMatchLength))
         
-        // Check if prefixes match
-        if filePrefix == folderPrefix {
-            return true
-        }
-        
-        // Also check if folder name contains the file name prefix
+        // Check if folder name starts with the file prefix
         return folderName.hasPrefix(filePrefix)
     }
     
