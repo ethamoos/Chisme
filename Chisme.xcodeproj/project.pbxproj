@@ -10,14 +10,17 @@
 		A1000001000000000000001 /* ChismeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000001 /* ChismeApp.swift */; };
 		A1000002000000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000002000000000000001 /* ContentView.swift */; };
 		A1000003000000000000001 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003000000000000001 /* FileManager+Extensions.swift */; };
+		A86010B12F3E2012009FCEB4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86010B02F3E2012009FCEB4 /* HelpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A3000001000000000000001 /* Chisme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chisme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2000001000000000000001 /* ChismeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChismeApp.swift; sourceTree = "<group>"; };
 		A2000002000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A2000003000000000000001 /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
 		A2000004000000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3000001000000000000001 /* Chisme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chisme.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A86010B02F3E2012009FCEB4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		A86010B22F3E204A009FCEB4 /* EXAMPLE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = EXAMPLE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +41,8 @@
 				A2000002000000000000001 /* ContentView.swift */,
 				A2000003000000000000001 /* FileManager+Extensions.swift */,
 				A2000004000000000000001 /* Info.plist */,
+				A86010B02F3E2012009FCEB4 /* HelpView.swift */,
+				A86010B22F3E204A009FCEB4 /* EXAMPLE.md */,
 				A6000001000000000000001 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,6 +113,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1000001000000000000001 /* ChismeApp.swift in Sources */,
+				A86010B12F3E2012009FCEB4 /* HelpView.swift in Sources */,
 				A1000002000000000000001 /* ContentView.swift in Sources */,
 				A1000003000000000000001 /* FileManager+Extensions.swift in Sources */,
 			);
