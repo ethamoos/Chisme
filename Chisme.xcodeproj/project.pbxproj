@@ -10,6 +10,8 @@
 		A1000001000000000000001 /* ChismeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000001 /* ChismeApp.swift */; };
 		A1000002000000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000002000000000000001 /* ContentView.swift */; };
 		A1000003000000000000001 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003000000000000001 /* FileManager+Extensions.swift */; };
+		E49E5D842F3F84D8008939FA /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49E5D832F3F84D8008939FA /* HelpView.swift */; };
+		E49E5D872F3F8539008939FA /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49E5D862F3F8539008939FA /* Package.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,11 @@
 		A2000004000000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3000001000000000000001 /* Chisme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chisme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E472551F2EEF326700D97C5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E49E5D832F3F84D8008939FA /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		E49E5D852F3F84FE008939FA /* EXAMPLE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = EXAMPLE.md; sourceTree = "<group>"; };
+		E49E5D862F3F8539008939FA /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		E49E5D882F3F8541008939FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E49E5D892F3F8546008939FA /* USAGE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = USAGE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +47,11 @@
 				A2000002000000000000001 /* ContentView.swift */,
 				A2000003000000000000001 /* FileManager+Extensions.swift */,
 				A2000004000000000000001 /* Info.plist */,
+				E49E5D832F3F84D8008939FA /* HelpView.swift */,
+				E49E5D852F3F84FE008939FA /* EXAMPLE.md */,
+				E49E5D862F3F8539008939FA /* Package.swift */,
+				E49E5D882F3F8541008939FA /* README.md */,
+				E49E5D892F3F8546008939FA /* USAGE.md */,
 				A6000001000000000000001 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,7 +122,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1000001000000000000001 /* ChismeApp.swift in Sources */,
+				E49E5D872F3F8539008939FA /* Package.swift in Sources */,
 				A1000002000000000000001 /* ContentView.swift in Sources */,
+				E49E5D842F3F84D8008939FA /* HelpView.swift in Sources */,
 				A1000003000000000000001 /* FileManager+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
