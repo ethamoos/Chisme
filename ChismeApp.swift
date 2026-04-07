@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-final class AppState: ObservableObject {
-    @Published var showingHelp: Bool = false
-}
-
 @main
 struct ChismeApp: App {
     @StateObject private var appState = AppState()

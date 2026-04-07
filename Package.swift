@@ -1,12 +1,11 @@
 // swift-tools-version: 5.7
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "Chisme",
     platforms: [
-        .macOS(.v13) // macOS Ventura
+        .macOS(.v13)
     ],
     products: [
         .executable(
@@ -22,7 +21,12 @@ let package = Package(
             sources: [
                 "ChismeApp.swift",
                 "ContentView.swift",
-                "FileManager+Extensions.swift"
+                "FileManager+Extensions.swift",
+                "AppState.swift",
+                "HelpView.swift"
+            ],
+            resources: [
+                .copy("EXAMPLE.md")
             ]
         )
     ]
