@@ -25,155 +25,180 @@ struct ContentView: View {
             Text("Chisme")
                 .font(.system(size: 24, weight: .bold))
                 .padding(.top, 20)
-            
+
             Divider()
-            
-            Text("File Management")
-                .font(.system(size: 18, weight: .bold))
-                .padding(.top, 20)
 
-            // Source Folder Selection
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Source Folder:")
-                    .font(.headline)
+            // Tabs: Related contains the existing UI below the Divider; Custom is a placeholder
+            TabView {
+                // Related tab: existing file-management UI
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("File Management")
+                            .font(.system(size: 18, weight: .bold))
+                            .padding(.top, 20)
 
-                HStack {
-                    Text(sourceFolder?.path ?? "No folder selected")
-                        .font(.system(.body, design: .monospaced))
-                        .foregroundColor(sourceFolder != nil ? .primary : .secondary)
-                        .lineLimit(1)
-                        .truncationMode(.middle)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        // Source Folder Selection
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Source Folder:")
+                                .font(.headline)
 
-                    Button("Select Folder") {
-                        selectSourceFolder()
-                    }
-                    .buttonStyle(.bordered)
-                }
-                .padding(10)
-                .background(Color(NSColor.controlBackgroundColor))
-                .cornerRadius(8)
-            }
+                            HStack {
+                                Text(sourceFolder?.path ?? "No folder selected")
+                                    .font(.system(.body, design: .monospaced))
+                                    .foregroundColor(sourceFolder != nil ? .primary : .secondary)
+                                    .lineLimit(1)
+                                    .truncationMode(.middle)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
 
-            // Target Folder Selection
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Target Folder:")
-                    .font(.headline)
-
-                HStack {
-                    Text(targetFolder?.path ?? "No folder selected")
-                        .font(.system(.body, design: .monospaced))
-                        .foregroundColor(targetFolder != nil ? .primary : .secondary)
-                        .lineLimit(1)
-                        .truncationMode(.middle)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                    Button("Select Folder") {
-                        selectTargetFolder()
-                    }
-                    .buttonStyle(.bordered)
-
-                    if targetFolder != nil {
-                        Button("Open") {
-                            openTargetFolder()
+                                Button("Select Folder") {
+                                    selectSourceFolder()
+                                }
+                                .buttonStyle(.bordered)
+                            }
+                            .padding(10)
+                            .background(Color(NSColor.controlBackgroundColor))
+                            .cornerRadius(8)
                         }
-                        .buttonStyle(.bordered)
-                    }
-                }
-                .padding(10)
-                .background(Color(NSColor.controlBackgroundColor))
-                .cornerRadius(8)
-            }
 
-            // Move Button
-            HStack {
-                Spacer()
+                        // Target Folder Selection
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Target Folder:")
+                                .font(.headline)
 
-                Button(action: moveFiles) {
-                    HStack {
-                        if isProcessing {
-                            ProgressView()
-                                .scaleEffect(0.7)
-                                .frame(width: 16, height: 16)
+                            HStack {
+                                Text(targetFolder?.path ?? "No folder selected")
+                                    .font(.system(.body, design: .monospaced))
+                                    .foregroundColor(targetFolder != nil ? .primary : .secondary)
+                                    .lineLimit(1)
+                                    .truncationMode(.middle)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                                Button("Select Folder") {
+                                    selectTargetFolder()
+                                }
+                                .buttonStyle(.bordered)
+
+                                if targetFolder != nil {
+                                    Button("Open") {
+                                        openTargetFolder()
+                                    }
+                                    .buttonStyle(.bordered)
+                                }
+                            }
+                            .padding(10)
+                            .background(Color(NSColor.controlBackgroundColor))
+                            .cornerRadius(8)
                         }
-                        Text(isProcessing ? "Processing..." : "Move Files")
-                    }
-                    .frame(minWidth: 120)
-                }
-                .buttonStyle(.borderedProminent)
-                .disabled(sourceFolder == nil || targetFolder == nil || isProcessing)
 
-                Spacer()
-            }
-            .padding(.vertical, 10)
+                        // Move Button
+                        HStack {
+                            Spacer()
 
-            // Error Message
-            if let errorMessage = errorMessage {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-                    .font(.subheadline)
-                    .padding(10)
-                    .background(Color.red.opacity(0.1))
-                    .cornerRadius(8)
-            }
+                            Button(action: moveFiles) {
+                                HStack {
+                                    if isProcessing {
+                                        ProgressView()
+                                            .scaleEffect(0.7)
+                                            .frame(width: 16, height: 16)
+                                    }
+                                    Text(isProcessing ? "Processing..." : "Move Files")
+                                }
+                                .frame(minWidth: 120)
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .disabled(sourceFolder == nil || targetFolder == nil || isProcessing)
 
-            // Results Display
-            if !moveResults.isEmpty {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Move Results:")
-                        .font(.headline)
+                            Spacer()
+                        }
+                        .padding(.vertical, 10)
 
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 6) {
-                            ForEach(moveResults.indices, id: \.self) { index in
-                                let result = moveResults[index]
-                                HStack(alignment: .top, spacing: 8) {
-                                    Image(systemName: result.moved ? "checkmark.circle.fill" : "xmark.circle.fill")
-                                        .foregroundColor(result.moved ? .green : .red)
-                                        .frame(width: 20)
+                        // Error Message
+                        if let errorMessage = errorMessage {
+                            Text(errorMessage)
+                                .foregroundColor(.red)
+                                .font(.subheadline)
+                                .padding(10)
+                                .background(Color.red.opacity(0.1))
+                                .cornerRadius(8)
+                        }
 
-                                    VStack(alignment: .leading, spacing: 2) {
-                                        if result.moved {
-                                            Text("\(result.displayName) moved to \(result.targetFolderName)")
-                                                .font(.system(.body, design: .monospaced))
-                                        } else {
-                                            Text("\(result.displayName) failed to move")
-                                                .font(.system(.body, design: .monospaced))
-                                                .foregroundColor(.red)
+                        // Results Display
+                        if !moveResults.isEmpty {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text("Move Results:")
+                                    .font(.headline)
 
-                                            if let error = result.error {
-                                                Text("Error: \(error)")
-                                                    .font(.caption)
-                                                    .foregroundColor(.secondary)
+                                ScrollView {
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        ForEach(moveResults.indices, id: \.self) { index in
+                                            let result = moveResults[index]
+                                            HStack(alignment: .top, spacing: 8) {
+                                                Image(systemName: result.moved ? "checkmark.circle.fill" : "xmark.circle.fill")
+                                                    .foregroundColor(result.moved ? .green : .red)
+                                                    .frame(width: 20)
+
+                                                VStack(alignment: .leading, spacing: 2) {
+                                                    if result.moved {
+                                                        Text("\(result.displayName) moved to \(result.targetFolderName)")
+                                                            .font(.system(.body, design: .monospaced))
+                                                    } else {
+                                                        Text("\(result.displayName) failed to move")
+                                                            .font(.system(.body, design: .monospaced))
+                                                            .foregroundColor(.red)
+
+                                                        if let error = result.error {
+                                                            Text("Error: \(error)")
+                                                                .font(.caption)
+                                                                .foregroundColor(.secondary)
+                                                        }
+                                                    }
+                                                }
+
+                                                Spacer()
                                             }
+                                            .padding(8)
+                                            .background(result.moved ? Color.green.opacity(0.1) : Color.red.opacity(0.1))
+                                            .cornerRadius(6)
                                         }
                                     }
-
-                                    Spacer()
                                 }
-                                .padding(8)
-                                .background(result.moved ? Color.green.opacity(0.1) : Color.red.opacity(0.1))
-                                .cornerRadius(6)
+                                .frame(maxHeight: 300)
+                                .padding(10)
+                                .background(Color(NSColor.controlBackgroundColor))
+                                .cornerRadius(8)
+
+                                // Summary
+                                let successCount = moveResults.filter { $0.moved }.count
+                                let totalCount = moveResults.count
+                                Text("Summary: \(successCount) of \(totalCount) file(s) moved successfully")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
                             }
                         }
                     }
-                    .frame(maxHeight: 300)
-                    .padding(10)
-                    .background(Color(NSColor.controlBackgroundColor))
-                    .cornerRadius(8)
+                    .padding(30)
+                }
+                .tabItem {
+                    Text("Related")
+                }
 
-                    // Summary
-                    let successCount = moveResults.filter { $0.moved }.count
-                    let totalCount = moveResults.count
-                    Text("Summary: \(successCount) of \(totalCount) file(s) moved successfully")
-                        .font(.subheadline)
+                // Custom tab: placeholder for user customizations
+                VStack(alignment: .leading) {
+                    Text("Custom")
+                        .font(.title2)
+                        .padding(.top, 20)
+                    Text("Add your custom actions or settings here.")
                         .foregroundColor(.secondary)
+                        .padding(.top, 8)
+                    Spacer()
+                }
+                .padding(30)
+                .tabItem {
+                    Text("Custom")
                 }
             }
-
-            Spacer()
+            .frame(minWidth: 600, minHeight: 360)
         }
-        .padding(30)
         .frame(minWidth: 600, minHeight: 500)
         .sheet(isPresented: $appState.showingHelp) {
             HelpView()
