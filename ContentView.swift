@@ -22,8 +22,14 @@ struct ContentView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             // Header
-            Text("Chisme - File Manager")
+            Text("Chisme")
                 .font(.system(size: 24, weight: .bold))
+                .padding(.top, 20)
+            
+            Divider()
+            
+            Text("File Management")
+                .font(.system(size: 18, weight: .bold))
                 .padding(.top, 20)
 
             // Source Folder Selection
