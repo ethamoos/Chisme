@@ -176,7 +176,7 @@ struct ContentView: View {
                             }
                         }
                     }
-                    .padding(30)
+//                    .padding()
                 }
                 .tabItem {
                     Text("Related")
@@ -192,13 +192,15 @@ struct ContentView: View {
                         .padding(.top, 8)
                     Spacer()
                 }
-                .padding(30)
+//                .padding()
                 .tabItem {
                     Text("Custom")
                 }
             }
             .frame(minWidth: 600, minHeight: 360)
         }
+        .padding()
+
         .frame(minWidth: 600, minHeight: 500)
         .sheet(isPresented: $appState.showingHelp) {
             HelpView()
