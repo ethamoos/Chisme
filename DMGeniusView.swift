@@ -15,6 +15,10 @@ struct DMGeniusView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
+            Text("DMGs")
+
+                .font(.system(size: 18, weight: .bold))
+                .padding(.top, 20)
             HStack {
                 Text("Source:")
                 if let sourcePath = config.sourceURL?.path {
@@ -58,6 +62,7 @@ struct DMGeniusView: View {
                 Button("Create DMG") { createDMG() }.buttonStyle(.borderedProminent).tint(.blue)
                 Button("Create Structure DMG") { createStructureOnlyDMG() }.buttonStyle(.bordered).tint(.blue)
             }
+            Spacer()
 
             if !lastCommand.isEmpty || !lastStdout.isEmpty || !lastStderr.isEmpty {
                 HStack {

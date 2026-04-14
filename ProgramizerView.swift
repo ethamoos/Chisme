@@ -15,9 +15,11 @@ struct ProgramizerView: View {
             HStack(alignment: .center) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Programizer")
-                        .font(.system(size: 28, weight: .semibold))
-                        .foregroundColor(Color.accentColor)
-                    Text("Mass-mount and run scripts on DMG volumes")
+
+                        .font(.system(size: 18, weight: .bold))
+                        .padding(.top, 20)
+
+                    Text("Mass-mount and run processing scripts on DMG volumes")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }

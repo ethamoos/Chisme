@@ -155,6 +155,23 @@ class FileMatcher {
         return 1.0 - (Double(dist) / Double(maxLen))
     }
 
+    /// Normalize a filename for grouping: lowercased, trimmed, collapse whitespace, strip trailing numeric suffixes like " 2" or " (2)"
+    private func normalizeForGrouping(_ s: String) -> String {
+        var t = s.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        // collapse multiple whitespace
+        t = t.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+        // remove trailing numeric suffixes: " 2", " (2)", "-2" etc.
+        // common patterns: space+digits at end, space + '(' digits ')'
+        if let r = try? NSRegularExpression(pattern: "\\s*\\(\\d+\\)$", options: []) {
+            t = r.stringByReplacingMatches(in: t, options: [], range: NSRange(location: 0, length: t.utf16.count), withTemplate: "")
+        }
+        if let r2 = try? NSRegularExpression(pattern: "\\s*-?\\d+$", options: []) {
+            t = r2.stringByReplacingMatches(in: t, options: [], range: NSRange(location: 0, length: t.utf16.count), withTemplate: "")
+        }
+        t = t.trimmingCharacters(in: .whitespacesAndNewlines)
+        return t
+    }
+
     /// Group similar (non-directory) items in the given folder by filename similarity.
     /// - Parameters:
     ///   - targetFolder: folder containing items to group (non-recursive)
@@ -164,7 +181,8 @@ class FileMatcher {
     func groupSimilarItems(in targetFolder: URL, scoreThreshold: Double = 0.8, createFolders: Bool = true) throws -> [(URL, [URL])] {
         // List items (non-recursive)
         let contents = try fileManager.contentsOfDirectory(at: targetFolder)
-        let items = contents.filter { !fileManager.isDirectory(at: $0) }
+        // Include both files and directories for grouping (so folders like "untitled folder 2" are considered)
+        let items = contents
 
         // Prepare names
         struct Group {
@@ -176,16 +194,31 @@ class FileMatcher {
 
         for item in items {
             let name = item.deletingPathExtension().lastPathComponent
+            let norm = normalizeForGrouping(name)
             var placed = false
-            // Try to place into an existing group (single-linkage / greedy)
+            // Try to place into an existing group (greedy) using normalized representative
             for idx in groups.indices {
-                let rep = groups[idx].repName
-                let score = levenshteinRatio(name, rep)
+                let repNorm = normalizeForGrouping(groups[idx].repName)
+                let score = levenshteinRatio(norm, repNorm)
                 if score >= scoreThreshold {
                     groups[idx].items.append(item)
                     placed = true
                     break
                 }
+                // Also try against each existing member (single-linkage across members)
+                if !placed {
+                    for member in groups[idx].items {
+                        let mname = member.deletingPathExtension().lastPathComponent
+                        let mnorm = normalizeForGrouping(mname)
+                        let s2 = levenshteinRatio(norm, mnorm)
+                        if s2 >= scoreThreshold {
+                            groups[idx].items.append(item)
+                            placed = true
+                            break
+                        }
+                    }
+                }
+                if placed { break }
             }
             if !placed {
                 // Start a new group with this item as representative
@@ -197,9 +230,10 @@ class FileMatcher {
 
         for g in groups {
             // Create a safe folder name based on representative
-            var folderName = g.repName
+            // Use normalized representative as folder name base, stripping trailing numbers
+            var folderName = normalizeForGrouping(g.repName)
             if folderName.isEmpty { folderName = "group" }
-            // Sanitize characters that are problematic in filenames
+            // replace spaces and sanitize newlines
             folderName = folderName.replacingOccurrences(of: "\n", with: " ")
             folderName = folderName.trimmingCharacters(in: .whitespacesAndNewlines)
             if folderName.isEmpty { folderName = "group" }
@@ -225,8 +259,25 @@ class FileMatcher {
 
                 // Move each item into the folder
                 for item in g.items {
+                    // Use standardized paths to avoid issues with trailing slashes or symlinks
+                    let itemPath = item.standardizedFileURL.path
+                    let folderPath = folderURL.standardizedFileURL.path
+
+                    // If the item is the same folder as the destination, skip (already in place)
+                    // Compare case-insensitively because macOS filesystem is usually case-insensitive
+                    let itemPathLower = itemPath.lowercased()
+                    let folderPathLower = folderPath.lowercased()
+                    if itemPathLower == folderPathLower {
+                        continue
+                    }
+
+                    // Safety: avoid moving a folder into one of its own descendants (case-insensitive)
+                    if folderPathLower.hasPrefix(itemPathLower + "/") {
+                        continue
+                    }
+
                     let dest = folderURL.appendingPathComponent(item.lastPathComponent)
-                    // If a file already exists at dest, skip or rename — we'll append a numeric suffix
+                    // If a file already exists at dest, choose a unique name (append numeric suffix)
                     if fileManager.fileExists(atPath: dest.path) {
                         var i = 1
                         let base = item.deletingPathExtension().lastPathComponent
