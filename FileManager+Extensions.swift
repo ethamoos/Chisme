@@ -115,4 +115,138 @@ class FileMatcher {
         
         return results
     }
+
+    // MARK: - Grouping by filename similarity
+
+    /// Compute the Levenshtein distance between two strings
+    private func levenshteinDistance(_ aStr: String, _ bStr: String) -> Int {
+        let a = Array(aStr)
+        let b = Array(bStr)
+        let n = a.count
+        let m = b.count
+        if n == 0 { return m }
+        if m == 0 { return n }
+
+        var prev = Array(0...m)
+        var cur = [Int](repeating: 0, count: m + 1)
+
+        for i in 1...n {
+            cur[0] = i
+            for j in 1...m {
+                let cost = (a[i-1] == b[j-1]) ? 0 : 1
+                cur[j] = min(
+                    prev[j] + 1,
+                    cur[j-1] + 1,
+                    prev[j-1] + cost
+                )
+            }
+            prev = cur
+        }
+        return cur[m]
+    }
+
+    /// Return a similarity ratio in 0...1 using Levenshtein distance normalized by max length
+    private func levenshteinRatio(_ a: String, _ b: String) -> Double {
+        let aa = a.lowercased()
+        let bb = b.lowercased()
+        let maxLen = max(aa.count, bb.count)
+        if maxLen == 0 { return 1.0 }
+        let dist = levenshteinDistance(aa, bb)
+        return 1.0 - (Double(dist) / Double(maxLen))
+    }
+
+    /// Group similar (non-directory) items in the given folder by filename similarity.
+    /// - Parameters:
+    ///   - targetFolder: folder containing items to group (non-recursive)
+    ///   - scoreThreshold: similarity threshold (0...1) above which items are considered similar. Default 0.8
+    ///   - createFolders: if true, create new folders in `targetFolder` and move grouped items into them
+    /// - Returns: an array of tuples (groupFolderURL, items) describing the groups. If `createFolders` is false the groupFolderURL will be a suggested name (not created).
+    func groupSimilarItems(in targetFolder: URL, scoreThreshold: Double = 0.8, createFolders: Bool = true) throws -> [(URL, [URL])] {
+        // List items (non-recursive)
+        let contents = try fileManager.contentsOfDirectory(at: targetFolder)
+        let items = contents.filter { !fileManager.isDirectory(at: $0) }
+
+        // Prepare names
+        struct Group {
+            var repName: String
+            var items: [URL]
+        }
+
+        var groups: [Group] = []
+
+        for item in items {
+            let name = item.deletingPathExtension().lastPathComponent
+            var placed = false
+            // Try to place into an existing group (single-linkage / greedy)
+            for idx in groups.indices {
+                let rep = groups[idx].repName
+                let score = levenshteinRatio(name, rep)
+                if score >= scoreThreshold {
+                    groups[idx].items.append(item)
+                    placed = true
+                    break
+                }
+            }
+            if !placed {
+                // Start a new group with this item as representative
+                groups.append(Group(repName: name, items: [item]))
+            }
+        }
+
+        var result: [(URL, [URL])] = []
+
+        for g in groups {
+            // Create a safe folder name based on representative
+            var folderName = g.repName
+            if folderName.isEmpty { folderName = "group" }
+            // Sanitize characters that are problematic in filenames
+            folderName = folderName.replacingOccurrences(of: "\n", with: " ")
+            folderName = folderName.trimmingCharacters(in: .whitespacesAndNewlines)
+            if folderName.isEmpty { folderName = "group" }
+
+            var folderURL = targetFolder.appendingPathComponent(folderName, isDirectory: true)
+            var uniqueIndex = 1
+            while fileManager.fileExists(atPath: folderURL.path) {
+                // If an existing file is a directory and already contains exactly the same items, reuse it; otherwise create unique name
+                var isDir: ObjCBool = false
+                fileManager.fileExists(atPath: folderURL.path, isDirectory: &isDir)
+                if isDir.boolValue {
+                    break
+                }
+                folderURL = targetFolder.appendingPathComponent("\(folderName)-\(uniqueIndex)", isDirectory: true)
+                uniqueIndex += 1
+            }
+
+            if createFolders {
+                // Create the folder if needed
+                if !fileManager.fileExists(atPath: folderURL.path) {
+                    try fileManager.createDirectory(at: folderURL, withIntermediateDirectories: false, attributes: nil)
+                }
+
+                // Move each item into the folder
+                for item in g.items {
+                    let dest = folderURL.appendingPathComponent(item.lastPathComponent)
+                    // If a file already exists at dest, skip or rename — we'll append a numeric suffix
+                    if fileManager.fileExists(atPath: dest.path) {
+                        var i = 1
+                        let base = item.deletingPathExtension().lastPathComponent
+                        let ext = item.pathExtension
+                        var candidate = dest
+                        while fileManager.fileExists(atPath: candidate.path) {
+                            let newName = "\(base)-\(i)" + (ext.isEmpty ? "" : ".\(ext)")
+                            candidate = folderURL.appendingPathComponent(newName)
+                            i += 1
+                        }
+                        try fileManager.moveItem(at: item, to: candidate)
+                    } else {
+                        try fileManager.moveItem(at: item, to: dest)
+                    }
+                }
+            }
+
+            result.append((folderURL, g.items))
+        }
+
+        return result
+    }
 }
