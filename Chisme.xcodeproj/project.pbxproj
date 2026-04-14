@@ -12,6 +12,12 @@
         A1000003000000000000001 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003000000000000001 /* FileManager+Extensions.swift */; };
         A1000004000000000000001 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000005000000000000001 /* AppState.swift */; };
         A86010B12F3E2012009FCEB4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86010B02F3E2012009FCEB4 /* HelpView.swift */; };
+        A1000005000000000000001 /* DMGManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000006000000000000001 /* DMGManager.swift */; };
+        A1000006000000000000001 /* ProgramizerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000007000000000000001 /* ProgramizerAPI.swift */; };
+        A1000007000000000000001 /* DMGCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000008000000000000001 /* DMGCreator.swift */; };
+        A1000008000000000000001 /* DMGeniusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000009000000000000001 /* DMGeniusAPI.swift */; };
+        A1000009000000000000001 /* ProgramizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000A000000000000001 /* ProgramizerView.swift */; };
+        A100000A000000000000001 /* DMGeniusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000B000000000000001 /* DMGeniusView.swift */; };
         A86010B32F3E20A009FCEB4 /* EXAMPLE.md in Resources */ = {isa = PBXBuildFile; fileRef = A86010B22F3E204A009FCEB4 /* EXAMPLE.md */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +30,12 @@
         A86010B02F3E2012009FCEB4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
         A86010B22F3E204A009FCEB4 /* EXAMPLE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = EXAMPLE.md; sourceTree = "<group>"; };
         A2000005000000000000001 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+        A2000006000000000000001 /* DMGManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sources/Programizer/DMGManager.swift"; sourceTree = "<group>"; };
+        A2000007000000000000001 /* ProgramizerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sources/Programizer/ProgramizerAPI.swift"; sourceTree = "<group>"; };
+        A2000008000000000000001 /* DMGCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sources/DMGenius/DMGCreator.swift"; sourceTree = "<group>"; };
+        A2000009000000000000001 /* DMGeniusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sources/DMGenius/DMGeniusAPI.swift"; sourceTree = "<group>"; };
+        A200000A000000000000001 /* ProgramizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramizerView.swift; sourceTree = "<group>"; };
+        A200000B000000000000001 /* DMGeniusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMGeniusView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +67,12 @@
                 A2000004000000000000001 /* Info.plist */,
                 A86010B02F3E2012009FCEB4 /* HelpView.swift */,
                 A86010B22F3E204A009FCEB4 /* EXAMPLE.md */,
+                A2000006000000000000001 /* DMGManager.swift */,
+                A2000007000000000000001 /* ProgramizerAPI.swift */,
+                A2000008000000000000001 /* DMGCreator.swift */,
+                A2000009000000000000001 /* DMGeniusAPI.swift */,
+                A200000A000000000000001 /* ProgramizerView.swift */,
+                A200000B000000000000001 /* DMGeniusView.swift */,
                 A6000001000000000000001 /* Products */,
             );
             sourceTree = "<group>";
@@ -130,6 +148,12 @@
                 A1000002000000000000001 /* ContentView.swift in Sources */,
                 A1000004000000000000001 /* AppState.swift in Sources */,
                 A1000003000000000000001 /* FileManager+Extensions.swift in Sources */,
+                A1000005000000000000001 /* DMGManager.swift in Sources */,
+                A1000006000000000000001 /* ProgramizerAPI.swift in Sources */,
+                A1000007000000000000001 /* DMGCreator.swift in Sources */,
+                A1000008000000000000001 /* DMGeniusAPI.swift in Sources */,
+                A1000009000000000000001 /* ProgramizerView.swift in Sources */,
+                A100000A000000000000001 /* DMGeniusView.swift in Sources */,
             );
             runOnlyForDeploymentPostprocessing = 0;
         };

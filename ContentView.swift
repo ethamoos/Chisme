@@ -192,10 +192,22 @@ struct ContentView: View {
                         .padding(.top, 8)
                     Spacer()
                 }
-//                .padding()
+//                .padding()    
                 .tabItem {
                     Text("Custom")
                 }
+
+                // Programizer tab: placeholder for features ported from Programizer app
+                ProgramizerView()
+                    .tabItem {
+                        Text("Programizer")
+                    }
+
+                // DMGenius tab: placeholder for features ported from DMGenius app
+                DMGeniusView()
+                    .tabItem {
+                        Text("DMGenius")
+                    }
             }
             .frame(minWidth: 600, minHeight: 360)
         }

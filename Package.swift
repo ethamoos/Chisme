@@ -14,16 +14,31 @@ let package = Package(
         )
     ],
     targets: [
+        .target(
+            name: "ProgramizerKit",
+            dependencies: [],
+            path: "Sources/Programizer"
+        ),
+        .target(
+            name: "DMGeniusKit",
+            dependencies: [],
+            path: "Sources/DMGenius"
+        ),
         .executableTarget(
             name: "Chisme",
-            dependencies: [],
+            dependencies: [
+                .target(name: "ProgramizerKit"),
+                .target(name: "DMGeniusKit")
+            ],
             path: ".",
             sources: [
                 "ChismeApp.swift",
                 "ContentView.swift",
                 "FileManager+Extensions.swift",
                 "AppState.swift",
-                "HelpView.swift"
+                "HelpView.swift",
+                "ProgramizerView.swift",
+                "DMGeniusView.swift"
             ],
             resources: [
                 .copy("EXAMPLE.md")
