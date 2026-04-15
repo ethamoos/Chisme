@@ -48,20 +48,26 @@ struct ContentView: View {
                         Text("File Management")
                             .font(.system(size: 18, weight: .bold))
                             .padding(.top, 20)
+                        
+                        Text("Sort related files and move to their own folders")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
 
                         // Sub-tabs: segmented control to switch between Move and Sorting
                         Picker("Mode", selection: $fileManagementMode) {
-                            Text("Move Files").tag(0)
-                            Text("Sorting").tag(1)
+                            Text("Sort A").tag(0)
+                            Text("Sort B").tag(1)
                         }
                         .pickerStyle(SegmentedPickerStyle())
 
                         if fileManagementMode == 0 {
                             // --- Move Files UI (unchanged) ---
                             VStack(alignment: .leading, spacing: 8) {
-                                Text("Move Files")
-                                    .font(.headline)
-
+//                                Text("Move Specific Files")
+//                                    .font(.headline)
+                                Text("Move Specific Files to a pre-existing folder. For example: move John_essay to John_folder. The Target Folder is the overall destination so using the above example and assuming that target is:\nUsers/currentUser/Downloads\n\nChisme will assume that Jon_folder exists within the target")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
                                 // Source Folder Selection
                                 VStack(alignment: .leading, spacing: 8) {
                                     Text("Source Folder:")
@@ -166,7 +172,7 @@ struct ContentView: View {
                                 Text("Sorting")
                                     .font(.headline)
 
-                                Text("Group similar items in a target folder by filename similarity.")
+                                Text("Group similar items into a target folder by filename similarity. Create the folder if it doesn't exist.")
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
 
@@ -274,9 +280,9 @@ struct ContentView: View {
                     Spacer()
                 }
 //                .padding()    
-                .tabItem {
-                    Text("Custom")
-                }
+//                .tabItem {
+//                    Text("Custom")
+//                }
 
                 // Programizer tab: placeholder for features ported from Programizer app
                 ProgramizerView()
