@@ -19,6 +19,8 @@
 		A100000A000000000000001 /* DMGeniusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000B000000000000001 /* DMGeniusView.swift */; };
 		A86010B12F3E2012009FCEB4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86010B02F3E2012009FCEB4 /* HelpView.swift */; };
 		A86010B32F3E20A009FCEB4 /* EXAMPLE.md in Resources */ = {isa = PBXBuildFile; fileRef = A86010B22F3E204A009FCEB4 /* EXAMPLE.md */; };
+		A8ED3C032FAB288D00DDBEB7 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = A8ED3C022FAB288900DDBEB7 /* LICENSE.txt */; };
+		A8ED3C052FAB28AC00DDBEB7 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A8ED3C042FAB28AC00DDBEB7 /* Credits.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		A3000001000000000000001 /* Chisme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chisme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A86010B02F3E2012009FCEB4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		A86010B22F3E204A009FCEB4 /* EXAMPLE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = EXAMPLE.md; sourceTree = "<group>"; };
+		A8ED3C022FAB288900DDBEB7 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		A8ED3C042FAB28AC00DDBEB7 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -56,12 +60,14 @@
 		A5000001000000000000001 = {
 			isa = PBXGroup;
 			children = (
+				A8ED3C042FAB28AC00DDBEB7 /* Credits.rtf */,
 				A8020C262F90E18C00F3778D /* Assets.xcassets */,
 				A2000001000000000000001 /* ChismeApp.swift */,
 				A2000002000000000000001 /* ContentView.swift */,
 				A2000003000000000000001 /* FileManager+Extensions.swift */,
 				A2000005000000000000001 /* AppState.swift */,
 				A2000004000000000000001 /* Info.plist */,
+				A8ED3C022FAB288900DDBEB7 /* LICENSE.txt */,
 				A86010B02F3E2012009FCEB4 /* HelpView.swift */,
 				A86010B22F3E204A009FCEB4 /* EXAMPLE.md */,
 				A2000006000000000000001 /* Sources/Programizer/DMGManager.swift */,
@@ -144,6 +150,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A86010B32F3E20A009FCEB4 /* EXAMPLE.md in Resources */,
+				A8ED3C052FAB28AC00DDBEB7 /* Credits.rtf in Resources */,
+				A8ED3C032FAB288D00DDBEB7 /* LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +311,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = T8LP25947P;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -313,7 +321,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chisme.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -331,7 +339,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = T8LP25947P;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -341,7 +349,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chisme.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
