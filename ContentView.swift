@@ -65,9 +65,10 @@ struct ContentView: View {
                             VStack(alignment: .leading, spacing: 8) {
 //                                Text("Move Specific Files")
 //                                    .font(.headline)
-                                Text("Move Specific Files to a pre-existing folder. For example: move John_essay to John_folder. The Target Folder is the overall destination so using the above example and assuming that target is:\nUsers/currentUser/Downloads\n\nChisme will assume that Jon_folder exists within the target")
+                                Text("Move Specific Files to a pre-existing folder. For example: move John_essay to John_folder. \nThe Target Folder is the overall destination so using the above example and assuming that target is:\nUsers/currentUser/Downloads\n\nChisme will assume that John_folder exists within the target")
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
+                                Divider()
                                 // Source Folder Selection
                                 VStack(alignment: .leading, spacing: 8) {
                                     Text("Source Folder:")

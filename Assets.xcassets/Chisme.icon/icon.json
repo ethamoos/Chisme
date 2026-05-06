@@ -1,0 +1,72 @@
+{
+  "fill" : {
+    "automatic-gradient" : "extended-srgb:0.00000,0.53333,1.00000,1.00000"
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "hidden" : true,
+          "image-name" : "chsime 2.png",
+          "name" : "chsime 2"
+        },
+        {
+          "blend-mode" : "darken",
+          "glass" : true,
+          "image-name" : "chisme 2.jpg",
+          "name" : "chisme 2",
+          "opacity" : 0.42,
+          "position" : {
+            "scale" : 2.61,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "blend-mode" : "screen",
+          "fill" : "automatic",
+          "glass" : true,
+          "hidden" : true,
+          "image-name" : "chisme.png",
+          "name" : "chisme",
+          "opacity" : 0.5,
+          "position" : {
+            "scale" : 2.23,
+            "translation-in-points" : [
+              86.9921875,
+              21.5390625
+            ]
+          }
+        },
+        {
+          "hidden" : true,
+          "image-name" : "chsime.png",
+          "name" : "chsime",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              -18.8203125,
+              48.9765625
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}

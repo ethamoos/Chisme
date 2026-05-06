@@ -1,365 +1,376 @@
 // !$*UTF8*$!
 {
-    archiveVersion = 1;
-    classes = {
-    };
-    objectVersion = 56;
-    objects = {
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
 
 /* Begin PBXBuildFile section */
-        A1000001000000000000001 /* ChismeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000001 /* ChismeApp.swift */; };
-        A1000002000000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000002000000000000001 /* ContentView.swift */; };
-        A1000003000000000000001 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003000000000000001 /* FileManager+Extensions.swift */; };
-        A1000004000000000000001 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000005000000000000001 /* AppState.swift */; };
-        A86010B12F3E2012009FCEB4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86010B02F3E2012009FCEB4 /* HelpView.swift */; };
-        A1000005000000000000001 /* DMGManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000006000000000000001 /* DMGManager.swift */; };
-        A1000006000000000000001 /* ProgramizerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000007000000000000001 /* ProgramizerAPI.swift */; };
-        A1000007000000000000001 /* DMGCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000008000000000000001 /* DMGCreator.swift */; };
-        A1000008000000000000001 /* DMGeniusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000009000000000000001 /* DMGeniusAPI.swift */; };
-        A1000009000000000000001 /* ProgramizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000A000000000000001 /* ProgramizerView.swift */; };
-        A100000A000000000000001 /* DMGeniusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000B000000000000001 /* DMGeniusView.swift */; };
-        A86010B32F3E20A009FCEB4 /* EXAMPLE.md in Resources */ = {isa = PBXBuildFile; fileRef = A86010B22F3E204A009FCEB4 /* EXAMPLE.md */; };
+		A1000001000000000000001 /* ChismeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000001 /* ChismeApp.swift */; };
+		A1000002000000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000002000000000000001 /* ContentView.swift */; };
+		A1000003000000000000001 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003000000000000001 /* FileManager+Extensions.swift */; };
+		A1000004000000000000001 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000005000000000000001 /* AppState.swift */; };
+		A1000005000000000000001 /* Sources/Programizer/DMGManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000006000000000000001 /* Sources/Programizer/DMGManager.swift */; };
+		A1000006000000000000001 /* Sources/Programizer/ProgramizerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000007000000000000001 /* Sources/Programizer/ProgramizerAPI.swift */; };
+		A1000007000000000000001 /* Sources/DMGenius/DMGCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000008000000000000001 /* Sources/DMGenius/DMGCreator.swift */; };
+		A1000008000000000000001 /* Sources/DMGenius/DMGeniusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000009000000000000001 /* Sources/DMGenius/DMGeniusAPI.swift */; };
+		A1000009000000000000001 /* ProgramizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000A000000000000001 /* ProgramizerView.swift */; };
+		A100000A000000000000001 /* DMGeniusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000B000000000000001 /* DMGeniusView.swift */; };
+		A86010B12F3E2012009FCEB4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86010B02F3E2012009FCEB4 /* HelpView.swift */; };
+		A86010B32F3E20A009FCEB4 /* EXAMPLE.md in Resources */ = {isa = PBXBuildFile; fileRef = A86010B22F3E204A009FCEB4 /* EXAMPLE.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-        A2000001000000000000001 /* ChismeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChismeApp.swift; sourceTree = "<group>"; };
-        A2000002000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-        A2000003000000000000001 /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
-        A2000004000000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-        A3000001000000000000001 /* Chisme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chisme.app; sourceTree = BUILT_PRODUCTS_DIR; };
-        A86010B02F3E2012009FCEB4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
-        A86010B22F3E204A009FCEB4 /* EXAMPLE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = EXAMPLE.md; sourceTree = "<group>"; };
-        A2000005000000000000001 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-        A2000006000000000000001 /* DMGManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sources/Programizer/DMGManager.swift"; sourceTree = "<group>"; };
-        A2000007000000000000001 /* ProgramizerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sources/Programizer/ProgramizerAPI.swift"; sourceTree = "<group>"; };
-        A2000008000000000000001 /* DMGCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sources/DMGenius/DMGCreator.swift"; sourceTree = "<group>"; };
-        A2000009000000000000001 /* DMGeniusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sources/DMGenius/DMGeniusAPI.swift"; sourceTree = "<group>"; };
-        A200000A000000000000001 /* ProgramizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramizerView.swift; sourceTree = "<group>"; };
-        A200000B000000000000001 /* DMGeniusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMGeniusView.swift; sourceTree = "<group>"; };
+		A2000001000000000000001 /* ChismeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChismeApp.swift; sourceTree = "<group>"; };
+		A2000002000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A2000003000000000000001 /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
+		A2000004000000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2000005000000000000001 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		A2000006000000000000001 /* Sources/Programizer/DMGManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Programizer/DMGManager.swift; sourceTree = "<group>"; };
+		A2000007000000000000001 /* Sources/Programizer/ProgramizerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Programizer/ProgramizerAPI.swift; sourceTree = "<group>"; };
+		A2000008000000000000001 /* Sources/DMGenius/DMGCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/DMGenius/DMGCreator.swift; sourceTree = "<group>"; };
+		A2000009000000000000001 /* Sources/DMGenius/DMGeniusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/DMGenius/DMGeniusAPI.swift; sourceTree = "<group>"; };
+		A200000A000000000000001 /* ProgramizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramizerView.swift; sourceTree = "<group>"; };
+		A200000B000000000000001 /* DMGeniusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMGeniusView.swift; sourceTree = "<group>"; };
+		A3000001000000000000001 /* Chisme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chisme.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A86010B02F3E2012009FCEB4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		A86010B22F3E204A009FCEB4 /* EXAMPLE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = EXAMPLE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A8020C262F90E18C00F3778D /* Assets.xcassets */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
-        A4000001000000000000001 /* Frameworks */ = {
-            isa = PBXFrameworksBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        A4000002000000000000001 /* Resources */ = {
-            isa = PBXResourcesBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-                A86010B32F3E20A009FCEB4 /* EXAMPLE.md in Resources */,
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
+		A4000001000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-        A5000001000000000000001 = {
-            isa = PBXGroup;
-            children = (
-                A2000001000000000000001 /* ChismeApp.swift */,
-                A2000002000000000000001 /* ContentView.swift */,
-                A2000003000000000000001 /* FileManager+Extensions.swift */,
-                A2000005000000000000001 /* AppState.swift */,
-                A2000004000000000000001 /* Info.plist */,
-                A86010B02F3E2012009FCEB4 /* HelpView.swift */,
-                A86010B22F3E204A009FCEB4 /* EXAMPLE.md */,
-                A2000006000000000000001 /* DMGManager.swift */,
-                A2000007000000000000001 /* ProgramizerAPI.swift */,
-                A2000008000000000000001 /* DMGCreator.swift */,
-                A2000009000000000000001 /* DMGeniusAPI.swift */,
-                A200000A000000000000001 /* ProgramizerView.swift */,
-                A200000B000000000000001 /* DMGeniusView.swift */,
-                A6000001000000000000001 /* Products */,
-            );
-            sourceTree = "<group>";
-        };
-        A6000001000000000000001 /* Products */ = {
-            isa = PBXGroup;
-            children = (
-                A3000001000000000000001 /* Chisme.app */,
-            );
-            name = Products;
-            sourceTree = "<group>";
-        };
+		A5000001000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				A8020C262F90E18C00F3778D /* Assets.xcassets */,
+				A2000001000000000000001 /* ChismeApp.swift */,
+				A2000002000000000000001 /* ContentView.swift */,
+				A2000003000000000000001 /* FileManager+Extensions.swift */,
+				A2000005000000000000001 /* AppState.swift */,
+				A2000004000000000000001 /* Info.plist */,
+				A86010B02F3E2012009FCEB4 /* HelpView.swift */,
+				A86010B22F3E204A009FCEB4 /* EXAMPLE.md */,
+				A2000006000000000000001 /* Sources/Programizer/DMGManager.swift */,
+				A2000007000000000000001 /* Sources/Programizer/ProgramizerAPI.swift */,
+				A2000008000000000000001 /* Sources/DMGenius/DMGCreator.swift */,
+				A2000009000000000000001 /* Sources/DMGenius/DMGeniusAPI.swift */,
+				A200000A000000000000001 /* ProgramizerView.swift */,
+				A200000B000000000000001 /* DMGeniusView.swift */,
+				A6000001000000000000001 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A6000001000000000000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3000001000000000000001 /* Chisme.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-        A7000001000000000000001 /* Chisme */ = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = A8000001000000000000001 /* Build configuration list for PBXNativeTarget "Chisme" */;
-            buildPhases = (
-                A9000001000000000000001 /* Sources */,
-                A4000001000000000000001 /* Frameworks */,
-                A4000002000000000000001 /* Resources */,
-            );
-            buildRules = (
-            );
-            dependencies = (
-            );
-            name = Chisme;
-            productName = Chisme;
-            productReference = A3000001000000000000001 /* Chisme.app */;
-            productType = "com.apple.product-type.application";
-        };
+		A7000001000000000000001 /* Chisme */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8000001000000000000001 /* Build configuration list for PBXNativeTarget "Chisme" */;
+			buildPhases = (
+				A9000001000000000000001 /* Sources */,
+				A4000001000000000000001 /* Frameworks */,
+				A4000002000000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A8020C262F90E18C00F3778D /* Assets.xcassets */,
+			);
+			name = Chisme;
+			productName = Chisme;
+			productReference = A3000001000000000000001 /* Chisme.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-        A0000001000000000000001 /* Project object */ = {
-            isa = PBXProject;
-            attributes = {
-                BuildIndependentTargetsInParallel = 1;
-                LastSwiftUpdateCheck = 1500;
-                LastUpgradeCheck = 2620;
-                TargetAttributes = {
-                    A7000001000000000000001 = {
-                        CreatedOnToolsVersion = 15.0;
-                    };
-                };
-            };
-            buildConfigurationList = A8000002000000000000001 /* Build configuration list for PBXProject "Chisme" */;
-            compatibilityVersion = "Xcode 14.0";
-            developmentRegion = en;
-            hasScannedForEncodings = 0;
-            knownRegions = (
-                en,
-                Base,
-            );
-            mainGroup = A5000001000000000000001;
-            productRefGroup = A6000001000000000000001 /* Products */;
-            projectDirPath = "";
-            projectRoot = "";
-            targets = (
-                A7000001000000000000001 /* Chisme */,
-            );
-        };
+		A0000001000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					A7000001000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = A8000002000000000000001 /* Build configuration list for PBXProject "Chisme" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A5000001000000000000001;
+			productRefGroup = A6000001000000000000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A7000001000000000000001 /* Chisme */,
+			);
+		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		A4000002000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A86010B32F3E20A009FCEB4 /* EXAMPLE.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-        A9000001000000000000001 /* Sources */ = {
-            isa = PBXSourcesBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-                A1000001000000000000001 /* ChismeApp.swift in Sources */,
-                A86010B12F3E2012009FCEB4 /* HelpView.swift in Sources */,
-                A1000002000000000000001 /* ContentView.swift in Sources */,
-                A1000004000000000000001 /* AppState.swift in Sources */,
-                A1000003000000000000001 /* FileManager+Extensions.swift in Sources */,
-                A1000005000000000000001 /* DMGManager.swift in Sources */,
-                A1000006000000000000001 /* ProgramizerAPI.swift in Sources */,
-                A1000007000000000000001 /* DMGCreator.swift in Sources */,
-                A1000008000000000000001 /* DMGeniusAPI.swift in Sources */,
-                A1000009000000000000001 /* ProgramizerView.swift in Sources */,
-                A100000A000000000000001 /* DMGeniusView.swift in Sources */,
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
+		A9000001000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000001000000000000001 /* ChismeApp.swift in Sources */,
+				A86010B12F3E2012009FCEB4 /* HelpView.swift in Sources */,
+				A1000002000000000000001 /* ContentView.swift in Sources */,
+				A1000004000000000000001 /* AppState.swift in Sources */,
+				A1000003000000000000001 /* FileManager+Extensions.swift in Sources */,
+				A1000005000000000000001 /* Sources/Programizer/DMGManager.swift in Sources */,
+				A1000006000000000000001 /* Sources/Programizer/ProgramizerAPI.swift in Sources */,
+				A1000007000000000000001 /* Sources/DMGenius/DMGCreator.swift in Sources */,
+				A1000008000000000000001 /* Sources/DMGenius/DMGeniusAPI.swift in Sources */,
+				A1000009000000000000001 /* ProgramizerView.swift in Sources */,
+				A100000A000000000000001 /* DMGeniusView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-        AB000001000000000000001 /* Debug */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_SEARCH_USER_PATHS = NO;
-                ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-                CLANG_ANALYZER_NONNULL = YES;
-                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-                CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-                CLANG_ENABLE_MODULES = YES;
-                CLANG_ENABLE_OBJC_ARC = YES;
-                CLANG_ENABLE_OBJC_WEAK = YES;
-                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-                CLANG_WARN_BOOL_CONVERSION = YES;
-                CLANG_WARN_COMMA = YES;
-                CLANG_WARN_CONSTANT_CONVERSION = YES;
-                CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-                CLANG_WARN_EMPTY_BODY = YES;
-                CLANG_WARN_ENUM_CONVERSION = YES;
-                CLANG_WARN_INFINITE_RECURSION = YES;
-                CLANG_WARN_INT_CONVERSION = YES;
-                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-                CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-                CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-                CLANG_WARN_STRICT_PROTOTYPES = YES;
-                CLANG_WARN_SUSPICIOUS_MOVE = YES;
-                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-                CLANG_WARN_UNREACHABLE_CODE = YES;
-                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-                COPY_PHASE_STRIP = NO;
-                DEAD_CODE_STRIPPING = YES;
-                DEBUG_INFORMATION_FORMAT = dwarf;
-                ENABLE_STRICT_OBJC_MSGSEND = YES;
-                ENABLE_TESTABILITY = YES;
-                ENABLE_USER_SCRIPT_SANDBOXING = YES;
-                GCC_C_LANGUAGE_STANDARD = gnu17;
-                GCC_DYNAMIC_NO_PIC = NO;
-                GCC_NO_COMMON_BLOCKS = YES;
-                GCC_OPTIMIZATION_LEVEL = 0;
-                GCC_PREPROCESSOR_DEFINITIONS = (
-                    "DEBUG=1",
-                    "$(inherited)",
-                );
-                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-                GCC_WARN_UNDECLARED_SELECTOR = YES;
-                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-                GCC_WARN_UNUSED_FUNCTION = YES;
-                GCC_WARN_UNUSED_VARIABLE = YES;
-                LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-                MACOSX_DEPLOYMENT_TARGET = 13.0;
-                MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-                MTL_FAST_MATH = YES;
-                ONLY_ACTIVE_ARCH = YES;
-                SDKROOT = macosx;
-                STRING_CATALOG_GENERATE_SYMBOLS = YES;
-                SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-                SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-            };
-            name = Debug;
-        };
-        AB000002000000000000001 /* Release */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_SEARCH_USER_PATHS = NO;
-                ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-                CLANG_ANALYZER_NONNULL = YES;
-                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-                CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-                CLANG_ENABLE_MODULES = YES;
-                CLANG_ENABLE_OBJC_ARC = YES;
-                CLANG_ENABLE_OBJC_WEAK = YES;
-                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-                CLANG_WARN_BOOL_CONVERSION = YES;
-                CLANG_WARN_COMMA = YES;
-                CLANG_WARN_CONSTANT_CONVERSION = YES;
-                CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-                CLANG_WARN_EMPTY_BODY = YES;
-                CLANG_WARN_ENUM_CONVERSION = YES;
-                CLANG_WARN_INFINITE_RECURSION = YES;
-                CLANG_WARN_INT_CONVERSION = YES;
-                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-                CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-                CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-                CLANG_WARN_STRICT_PROTOTYPES = YES;
-                CLANG_WARN_SUSPICIOUS_MOVE = YES;
-                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-                CLANG_WARN_UNREACHABLE_CODE = YES;
-                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-                COPY_PHASE_STRIP = NO;
-                DEAD_CODE_STRIPPING = YES;
-                DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-                ENABLE_NS_ASSERTIONS = NO;
-                ENABLE_STRICT_OBJC_MSGSEND = YES;
-                ENABLE_USER_SCRIPT_SANDBOXING = YES;
-                GCC_C_LANGUAGE_STANDARD = gnu17;
-                GCC_NO_COMMON_BLOCKS = YES;
-                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-                GCC_WARN_UNDECLARED_SELECTOR = YES;
-                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-                GCC_WARN_UNUSED_FUNCTION = YES;
-                GCC_WARN_UNUSED_VARIABLE = YES;
-                LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-                MACOSX_DEPLOYMENT_TARGET = 13.0;
-                MTL_ENABLE_DEBUG_INFO = NO;
-                MTL_FAST_MATH = YES;
-                SDKROOT = macosx;
-                STRING_CATALOG_GENERATE_SYMBOLS = YES;
-                SWIFT_COMPILATION_MODE = wholemodule;
-            };
-            name = Release;
-        };
-        AC000001000000000000001 /* Debug */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-                ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-                CODE_SIGN_ENTITLEMENTS = "";
-                CODE_SIGN_STYLE = Automatic;
-                COMBINE_HIDPI_IMAGES = YES;
-                CURRENT_PROJECT_VERSION = 1;
-                DEAD_CODE_STRIPPING = YES;
-                DEVELOPMENT_TEAM = "";
-                ENABLE_HARDENED_RUNTIME = YES;
-                ENABLE_PREVIEWS = YES;
-                GENERATE_INFOPLIST_FILE = YES;
-                INFOPLIST_FILE = Info.plist;
-                INFOPLIST_KEY_NSHumanReadableCopyright = "";
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/../Frameworks",
-                );
-                MARKETING_VERSION = 1.0;
-                PRODUCT_BUNDLE_IDENTIFIER = com.chisme.app;
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                SWIFT_EMIT_LOC_STRINGS = YES;
-                SWIFT_VERSION = 5.7;
-            };
-            name = Debug;
-        };
-        AC000002000000000000001 /* Release */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-                ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-                CODE_SIGN_ENTITLEMENTS = "";
-                CODE_SIGN_STYLE = Automatic;
-                COMBINE_HIDPI_IMAGES = YES;
-                CURRENT_PROJECT_VERSION = 1;
-                DEAD_CODE_STRIPPING = YES;
-                DEVELOPMENT_TEAM = "";
-                ENABLE_HARDENED_RUNTIME = YES;
-                ENABLE_PREVIEWS = YES;
-                GENERATE_INFOPLIST_FILE = YES;
-                INFOPLIST_FILE = Info.plist;
-                INFOPLIST_KEY_NSHumanReadableCopyright = "";
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/../Frameworks",
-                );
-                MARKETING_VERSION = 1.0;
-                PRODUCT_BUNDLE_IDENTIFIER = com.chisme.app;
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                SWIFT_EMIT_LOC_STRINGS = YES;
-                SWIFT_VERSION = 5.7;
-            };
-            name = Release;
-        };
+		AB000001000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AB000002000000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		AC000001000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chisme.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.7;
+			};
+			name = Debug;
+		};
+		AC000002000000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chisme.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.7;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-        A8000001000000000000001 /* Build configuration list for PBXNativeTarget "Chisme" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                AC000001000000000000001 /* Debug */,
-                AC000002000000000000001 /* Release */,
-            );
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Release;
-        };
-        A8000002000000000000001 /* Build configuration list for PBXProject "Chisme" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                AB000001000000000000001 /* Debug */,
-                AB000002000000000000001 /* Release */,
-            );
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Release;
-        };
+		A8000001000000000000001 /* Build configuration list for PBXNativeTarget "Chisme" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC000001000000000000001 /* Debug */,
+				AC000002000000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8000002000000000000001 /* Build configuration list for PBXProject "Chisme" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB000001000000000000001 /* Debug */,
+				AB000002000000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
-    };
-    rootObject = A0000001000000000000001 /* Project object */;
+	};
+	rootObject = A0000001000000000000001 /* Project object */;
 }
