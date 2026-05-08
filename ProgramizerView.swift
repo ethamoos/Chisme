@@ -2,6 +2,7 @@ import SwiftUI
 #if canImport(ProgramizerKit)
 import ProgramizerKit
 #endif
+import UniformTypeIdentifiers
 
 struct ProgramizerView: View {
     @StateObject private var manager = DMGManager()
@@ -47,6 +48,19 @@ struct ProgramizerView: View {
                         .buttonStyle(.borderedProminent)
                         .tint(Color.accentColor)
                 }
+            }
+            .padding(.horizontal)
+
+            // Processing mode selector moved to top of the Programizer area
+            HStack {
+                Spacer()
+                Picker(selection: $processingTab, label: Text("Processing")) {
+                    Text("DMG Processing").tag(0)
+                    Text("File Processing").tag(1)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .frame(maxWidth: 420)
+                Spacer()
             }
             .padding(.horizontal)
 
@@ -176,10 +190,10 @@ struct ProgramizerView: View {
                 }
                 .frame(minWidth: 380)
 
-                // Right column: tabs for processing targets (DMG or Folder)
+                // Right column: processing views (rendered based on the top segmented selector)
                 VStack(spacing: 12) {
-                    TabView(selection: $processingTab) {
-                        // DMG Processing Tab
+                    if processingTab == 0 {
+                        // DMG Processing view
                         VStack(spacing: 12) {
                             GroupBox(label: Label("Found DMGs (1 level)", systemImage: "doc.on.doc")) {
                                 VStack(alignment: .leading) {
@@ -219,10 +233,8 @@ struct ProgramizerView: View {
                             }
                         }
                         .padding(4)
-                        .tabItem { Text("DMG Processing") }
-                        .tag(0)
-
-                        // Folder / General File Processing Tab
+                    } else {
+                        // Folder / General File Processing view
                         VStack(spacing: 12) {
                             GroupBox(label: Label("Folder Target", systemImage: "folder")) {
                                 VStack(alignment: .leading) {
@@ -287,8 +299,6 @@ struct ProgramizerView: View {
                             }
                         }
                         .padding(4)
-                        .tabItem { Text("File Processing") }
-                        .tag(1)
                     }
                 }
                 .frame(minWidth: 520)
@@ -381,7 +391,15 @@ struct ProgramizerView: View {
             panel.canChooseFiles = true
             panel.canChooseDirectories = false
             panel.allowsMultipleSelection = false
-            panel.allowedFileTypes = ["txt", "sh", "bash", "zsh", ""]
+            if #available(macOS 12.0, *) {
+                var types: [UTType] = [.plainText]
+                if let sh = UTType(filenameExtension: "sh") { types.append(sh) }
+                if let bash = UTType(filenameExtension: "bash") { types.append(bash) }
+                if let zsh = UTType(filenameExtension: "zsh") { types.append(zsh) }
+                panel.allowedContentTypes = types
+            } else {
+                panel.allowedFileTypes = ["txt", "sh", "bash", "zsh", ""]
+            }
             panel.prompt = "Import"
             guard panel.runModal() == .OK, let url = panel.url else { return }
             do {
@@ -432,7 +450,11 @@ struct ProgramizerView: View {
 
             let panel = NSSavePanel()
             panel.nameFieldStringValue = "script.sh"
-            panel.allowedFileTypes = ["txt", "sh"]
+            if #available(macOS 12.0, *) {
+                panel.allowedContentTypes = [.plainText]
+            } else {
+                panel.allowedFileTypes = ["txt", "sh"]
+            }
             panel.canCreateDirectories = true
             panel.prompt = "Export"
             if panel.runModal() == .OK, let url = panel.url {
