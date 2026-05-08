@@ -8,6 +8,11 @@ struct ProgramizerView: View {
     @AppStorage("relativePath") private var relativePath: String = "/Path/To/AppOrPkg"
     @State private var delaySeconds: Double = 2.0
     @State private var runAsAdmin: Bool = false
+    // Which processing tab is active: 0 = DMG, 1 = Folder
+    @State private var processingTab: Int = 0
+    // Folder processing state
+    @State private var folderProcessPath: URL? = nil
+    @State private var folderProcessItems: [URL] = []
     // Local saved scripts storage for this view (persisted to UserDefaults)
     struct SavedScript: Identifiable, Codable, Equatable {
         let id: UUID
@@ -140,9 +145,21 @@ struct ProgramizerView: View {
                             HStack {
                                 Button(action: {
                                     Task {
-                                        await manager.runSequential(relativePath: relativePath, delaySeconds: Int(delaySeconds), requireAdmin: runAsAdmin)
+                                        if processingTab == 0 {
+                                            // DMG processing: run the script on mounted DMGs
+                                            let success = await manager.runScriptOnMounted(delaySeconds: Int(delaySeconds), requireAdmin: runAsAdmin)
+                                                manager.appendLog("DMG script run completed: success=\(success)")
+                                        } else {
+                                            // Folder processing: run script on every item in selected folder
+                                            guard let folder = folderProcessPath else {
+                                                manager.appendLog("No folder selected for File Processing")
+                                                return
+                                            }
+                                            let success = await runScriptOnFolder(folder: folder, delaySeconds: Int(delaySeconds), requireAdmin: runAsAdmin)
+                                            manager.appendLog("Folder script run completed: success=\(success)")
+                                        }
                                     }
-                                }) { Label("Run on mounted DMGs", systemImage: "play.fill") }
+                                }) { Label("Run", systemImage: "play.fill") }
                                 .buttonStyle(.borderedProminent)
                                 .tint(Color.accentColor)
 
@@ -159,42 +176,119 @@ struct ProgramizerView: View {
                 }
                 .frame(minWidth: 380)
 
+                // Right column: tabs for processing targets (DMG or Folder)
                 VStack(spacing: 12) {
-                    GroupBox(label: Label("Found DMGs (1 level)", systemImage: "doc.on.doc")) {
-                        VStack(alignment: .leading) {
-                            List(manager.items) { item in
-                                HStack(spacing: 12) {
-                                    Circle().fill(item.isMounted ? Color.green : Color.gray.opacity(0.6)).frame(width: 12, height: 12)
-                                    VStack(alignment: .leading, spacing: 2) {
-                                        Text(item.name).font(.subheadline)
-                                        Text(item.url.path).font(.caption).foregroundColor(.secondary)
+                    TabView(selection: $processingTab) {
+                        // DMG Processing Tab
+                        VStack(spacing: 12) {
+                            GroupBox(label: Label("Found DMGs (1 level)", systemImage: "doc.on.doc")) {
+                                VStack(alignment: .leading) {
+                                    List(manager.items) { item in
+                                        HStack(spacing: 12) {
+                                            Circle().fill(item.isMounted ? Color.green : Color.gray.opacity(0.6)).frame(width: 12, height: 12)
+                                            VStack(alignment: .leading, spacing: 2) {
+                                                Text(item.name).font(.subheadline)
+                                                Text(item.url.path).font(.caption).foregroundColor(.secondary)
+                                            }
+                                            Spacer()
+                                            Text(item.statusText).font(.caption)
+                                        }
+                                        .padding(.vertical, 6)
+                                        .contextMenu {
+                                            if item.isMounted {
+                                                Button("Open Volume in Finder") { if let m = item.mountPoint { NSWorkspace.shared.open(URL(fileURLWithPath: m)) } }
+                                            }
+                                            Button("Mount Now") { Task { await manager.mount(item: item) } }
+                                        }
                                     }
-                                    Spacer()
-                                    Text(item.statusText).font(.caption)
+                                    .listStyle(.inset)
+                                    .frame(minHeight: 220)
                                 }
-                                .padding(.vertical, 6)
-                                .contextMenu {
-                                    if item.isMounted {
-                                        Button("Open Volume in Finder") { if let m = item.mountPoint { NSWorkspace.shared.open(URL(fileURLWithPath: m)) } }
-                                    }
-                                    Button("Mount Now") { Task { await manager.mount(item: item) } }
-                                }
+                                .padding(4)
                             }
-                            .listStyle(.inset)
-                            .frame(minHeight: 220)
+
+                            HStack {
+                                Button(action: { Task { await manager.mountAll() } }) { Text("Mount all") }.buttonStyle(.bordered)
+                                Button(action: { Task { await manager.unmountAll() } }) { Text("Unmount all") }.buttonStyle(.bordered)
+                                Spacer()
+                            }
+
+                            GroupBox(label: Label("Log", systemImage: "doc.plaintext")) {
+                                ScrollView { Text(manager.log.joined(separator: "\n")).font(.system(.body, design: .monospaced)).frame(maxWidth: .infinity, alignment: .leading).padding(8).background(Color(.windowBackgroundColor)) }
+                                    .frame(minHeight: 200)
+                            }
                         }
                         .padding(4)
-                    }
+                        .tabItem { Text("DMG Processing") }
+                        .tag(0)
 
-                    HStack {
-                        Button(action: { Task { await manager.mountAll() } }) { Text("Mount all") }.buttonStyle(.bordered)
-                        Button(action: { Task { await manager.unmountAll() } }) { Text("Unmount all") }.buttonStyle(.bordered)
-                        Spacer()
-                    }
+                        // Folder / General File Processing Tab
+                        VStack(spacing: 12) {
+                            GroupBox(label: Label("Folder Target", systemImage: "folder")) {
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        Text(folderProcessPath?.path ?? "No folder selected")
+                                            .lineLimit(1)
+                                            .truncationMode(.middle)
+                                        Spacer()
+                                        Button("Choose Folder") {
+                                            let panel = NSOpenPanel()
+                                            panel.canChooseDirectories = true
+                                            panel.canChooseFiles = false
+                                            panel.allowsMultipleSelection = false
+                                            if panel.runModal() == .OK, let url = panel.url {
+                                                folderProcessPath = url
+                                                // enumerate items (non-recursive)
+                                                do {
+                                                    let contents = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
+                                                    folderProcessItems = contents
+                                                } catch {
+                                                    manager.appendLog("Failed to list folder: \(error.localizedDescription)")
+                                                    folderProcessItems = []
+                                                }
+                                            }
+                                        }
+                                        .buttonStyle(.bordered)
+                                    }
 
-                    GroupBox(label: Label("Log", systemImage: "doc.plaintext")) {
-                        ScrollView { Text(manager.log.joined(separator: "\n")).font(.system(.body, design: .monospaced)).frame(maxWidth: .infinity, alignment: .leading).padding(8).background(Color(.windowBackgroundColor)) }
-                        .frame(minHeight: 200)
+                                    Divider()
+
+                                    Text("Items in folder: \(folderProcessItems.count)")
+                                        .font(.caption)
+
+                                    ScrollView {
+                                        VStack(alignment: .leading, spacing: 6) {
+                                            ForEach(folderProcessItems, id: \.self) { u in
+                                                Text(u.lastPathComponent).font(.caption).foregroundColor(.secondary)
+                                            }
+                                        }
+                                    }
+                                    .frame(minHeight: 180)
+                                }
+                                .padding(6)
+                            }
+
+                            HStack {
+                                Button(action: {
+                                    guard let folder = folderProcessPath else { return }
+                                    Task {
+                                        let success = await runScriptOnFolder(folder: folder, delaySeconds: Int(delaySeconds), requireAdmin: runAsAdmin)
+                                        manager.appendLog("Folder processing completed: success=\(success)")
+                                    }
+                                }) { Text("Run script on folder items") }
+                                .buttonStyle(.borderedProminent)
+
+                                Spacer()
+                            }
+
+                            GroupBox(label: Label("Log", systemImage: "doc.plaintext")) {
+                                ScrollView { Text(manager.log.joined(separator: "\n")).font(.system(.body, design: .monospaced)).frame(maxWidth: .infinity, alignment: .leading).padding(8).background(Color(.windowBackgroundColor)) }
+                                    .frame(minHeight: 160)
+                            }
+                        }
+                        .padding(4)
+                        .tabItem { Text("File Processing") }
+                        .tag(1)
                     }
                 }
                 .frame(minWidth: 520)
@@ -350,6 +444,109 @@ struct ProgramizerView: View {
                 }
             }
         }
+    }
+
+    // Run the current script on every item in the specified folder. Returns true if all runs returned 0 exit.
+    private func runScriptOnFolder(folder: URL, delaySeconds: Int, requireAdmin: Bool) async -> Bool {
+        let scriptText = manager.customScript.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !scriptText.isEmpty else {
+            manager.appendLog("No script defined; nothing to run on folder items.")
+            return false
+        }
+
+        // Write the script to a temporary file
+        let tmpDir = FileManager.default.temporaryDirectory
+        let tmpFile = tmpDir.appendingPathComponent("programizer_folder_script_\(UUID().uuidString).sh")
+        do {
+            try scriptText.data(using: .utf8)?.write(to: tmpFile, options: .atomic)
+            try FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: tmpFile.path)
+            manager.appendLog("Wrote temporary script to \(tmpFile.path)")
+        } catch {
+            manager.appendLog("Failed to write temporary script: \(error.localizedDescription)")
+            return false
+        }
+
+        defer {
+            try? FileManager.default.removeItem(at: tmpFile)
+            manager.appendLog("Removed temporary script: \(tmpFile.path)")
+        }
+
+        // Enumerate items (non-recursive)
+        let fm = FileManager.default
+        let items: [URL]
+        do {
+            items = try fm.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
+        } catch {
+            manager.appendLog("Failed to list folder items: \(error.localizedDescription)")
+            return false
+        }
+
+        if items.isEmpty {
+            manager.appendLog("No items in folder to process.")
+            return false
+        }
+
+        var overallSuccess = true
+
+        for item in items {
+            manager.appendLog("Running script on item: \(item.path)")
+            if requireAdmin {
+                // Build inner command to set env and call script with arg = item path
+                let escScript = tmpFile.path.replacingOccurrences(of: "\"", with: "\\\"")
+                let escItem = item.path.replacingOccurrences(of: "\"", with: "\\\"")
+                let inner = "TARGET=\"\(escItem)\" \"\(escScript)\" \"\(escItem)\""
+                let apple = "do shell script \"\(inner.replacingOccurrences(of: "\"", with: "\\\""))\" with administrator privileges"
+                let task = Process()
+                task.executableURL = URL(fileURLWithPath: "/usr/bin/osascript")
+                task.arguments = ["-e", apple]
+                let out = Pipe()
+                let err = Pipe()
+                task.standardOutput = out
+                task.standardError = err
+                do {
+                    try task.run()
+                    task.waitUntilExit()
+                    let outStr = String(data: out.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) ?? ""
+                    let errStr = String(data: err.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) ?? ""
+                    if !outStr.isEmpty { manager.appendLog("stdout: \(outStr.trimmingCharacters(in: .whitespacesAndNewlines))") }
+                    if !errStr.isEmpty { manager.appendLog("stderr: \(errStr.trimmingCharacters(in: .whitespacesAndNewlines))") }
+                    if task.terminationStatus != 0 { overallSuccess = false }
+                } catch {
+                    manager.appendLog("Failed to run admin script for item \(item.path): \(error.localizedDescription)")
+                    overallSuccess = false
+                }
+            } else {
+                // Run normally via /bin/sh -c with TARGET env
+                let escScript = tmpFile.path.replacingOccurrences(of: "\"", with: "\\\"")
+                let escItem = item.path.replacingOccurrences(of: "\"", with: "\\\"")
+                let wrapper = "TARGET=\"\(escItem)\" \"\(escScript)\" \"\(escItem)\""
+                let task = Process()
+                task.executableURL = URL(fileURLWithPath: "/bin/sh")
+                task.arguments = ["-c", wrapper]
+                let out = Pipe()
+                let err = Pipe()
+                task.standardOutput = out
+                task.standardError = err
+                do {
+                    try task.run()
+                    task.waitUntilExit()
+                    let outStr = String(data: out.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) ?? ""
+                    let errStr = String(data: err.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) ?? ""
+                    if !outStr.isEmpty { manager.appendLog("stdout: \(outStr.trimmingCharacters(in: .whitespacesAndNewlines))") }
+                    if !errStr.isEmpty { manager.appendLog("stderr: \(errStr.trimmingCharacters(in: .whitespacesAndNewlines))") }
+                    if task.terminationStatus != 0 { overallSuccess = false }
+                } catch {
+                    manager.appendLog("Failed to run script for item \(item.path): \(error.localizedDescription)")
+                    overallSuccess = false
+                }
+            }
+
+            if delaySeconds > 0 {
+                try? await Task.sleep(nanoseconds: UInt64(delaySeconds) * 1_000_000_000)
+            }
+        }
+
+        return overallSuccess
     }
 }
 
