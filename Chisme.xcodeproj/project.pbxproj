@@ -21,6 +21,7 @@
 		A86010B32F3E20A009FCEB4 /* EXAMPLE.md in Resources */ = {isa = PBXBuildFile; fileRef = A86010B22F3E204A009FCEB4 /* EXAMPLE.md */; };
 		A8ED3C032FAB288D00DDBEB7 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = A8ED3C022FAB288900DDBEB7 /* LICENSE.txt */; };
 		A8ED3C052FAB28AC00DDBEB7 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A8ED3C042FAB28AC00DDBEB7 /* Credits.rtf */; };
+		A86010B52F3E20A009FCEB4 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A86010B42F3E20A009FCEB4 /* AppIcon.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		A86010B22F3E204A009FCEB4 /* EXAMPLE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = EXAMPLE.md; sourceTree = "<group>"; };
 		A8ED3C022FAB288900DDBEB7 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		A8ED3C042FAB28AC00DDBEB7 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		A86010B42F3E20A009FCEB4 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = "com.apple.icns"; path = "Assets.xcassets/AppIcon.appiconset/AppIcon.icns"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -70,6 +72,7 @@
 				A8ED3C022FAB288900DDBEB7 /* LICENSE.txt */,
 				A86010B02F3E2012009FCEB4 /* HelpView.swift */,
 				A86010B22F3E204A009FCEB4 /* EXAMPLE.md */,
+										A86010B42F3E20A009FCEB4 /* AppIcon.icns */,
 				A2000006000000000000001 /* Sources/Programizer/DMGManager.swift */,
 				A2000007000000000000001 /* Sources/Programizer/ProgramizerAPI.swift */,
 				A2000008000000000000001 /* Sources/DMGenius/DMGCreator.swift */,
@@ -152,6 +155,7 @@
 				A86010B32F3E20A009FCEB4 /* EXAMPLE.md in Resources */,
 				A8ED3C052FAB28AC00DDBEB7 /* Credits.rtf in Resources */,
 				A8ED3C032FAB288D00DDBEB7 /* LICENSE.txt in Resources */,
+				A86010B52F3E20A009FCEB4 /* AppIcon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
