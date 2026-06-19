@@ -63,11 +63,6 @@ struct ContentView: View {
                         if fileManagementMode == 0 {
                             // --- Move Files UI (unchanged) ---
                             VStack(alignment: .leading, spacing: 8) {
-//                                Text("Move Specific Files")
-//                                    .font(.headline)
-                                Text("For example: move John_essay to John_folder. \nThe Target Folder is the overall destination for all folders so using the above example we assume the target is:\nUsers/currentUser/Downloads\nChisme will assume that John_folder exists within the target")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
                                 Divider()
                                 // Source Folder Selection
                                 VStack(alignment: .leading, spacing: 8) {

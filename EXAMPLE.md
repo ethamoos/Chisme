@@ -2,6 +2,18 @@
 
 This document provides a detailed example of how Chisme works with real file and folder structures.
 
+## File Management: Sort Files
+
+Use **Sort Files** when you want Chisme to move matched files into existing folders inside a single target location.
+
+For example, move `John_essay` to `John_folder`.
+
+The **Target Folder** is the overall destination for all folders. Using the example above, assume the target is:
+
+`/Users/currentUser/Downloads`
+
+Chisme assumes `John_folder` already exists inside that target folder.
+
 ## Scenario: Organizing Student Essays
 
 You're a teacher who has received essays from students. All essays are in your Downloads folder, and you want to move each essay to the respective student's folder.

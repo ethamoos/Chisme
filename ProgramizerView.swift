@@ -54,7 +54,7 @@ struct ProgramizerView: View {
             // Processing mode selector moved to top of the Programizer area
             HStack {
                 Spacer()
-                Picker(selection: $processingTab, label: Text("Processing")) {
+                Picker(selection: $processingTab, label: Text("")) {
                     Text("DMG Processing").tag(0)
                     Text("File Processing").tag(1)
                 }
@@ -101,18 +101,21 @@ struct ProgramizerView: View {
                         .padding(8)
                     }
 
-                    GroupBox(label: Label("Script", systemImage: "terminal.fill")) {
+                    GroupBox(label: Label("Scripts", systemImage: "terminal.fill")) {
                         VStack(alignment: .leading) {
                             // Saved scripts picker and quick actions
-                            HStack(spacing: 8) {
-                                Picker(selection: $selectedScriptID, label: Text("Saved")) {
+                            HStack(spacing: 1) {
+//                                Picker(selection: $selectedScriptID, label: Text("")) {
+                                    
+                                    Picker("Script:", selection: $selectedScriptID) {
+                                    
                                     Text("(none)").tag(UUID?.none)
                                     ForEach(savedScripts) { s in
                                         Text(s.name).tag(Optional(s.id))
                                     }
                                 }
                                 .frame(maxWidth: 240)
-
+                                
                                 Button("Load") {
                                     if let id = selectedScriptID, let s = savedScripts.first(where: { $0.id == id }) {
                                         manager.customScript = s.content
@@ -120,7 +123,7 @@ struct ProgramizerView: View {
                                 }
                                 .buttonStyle(.bordered)
                                 .disabled(selectedScriptID == nil)
-
+                                
                                 Button("Delete") {
                                     if let id = selectedScriptID, let idx = savedScripts.firstIndex(where: { $0.id == id }) {
                                         savedScripts.remove(at: idx)
@@ -130,19 +133,9 @@ struct ProgramizerView: View {
                                 }
                                 .buttonStyle(.bordered)
                                 .disabled(selectedScriptID == nil)
-
+//                            }
                                 Spacer()
 
-                                // Import / Export actions
-                                Button("Import") {
-                                    Task { await importScript() }
-                                }
-                                .buttonStyle(.bordered)
-
-                                Button("Export") {
-                                    Task { await exportScript() }
-                                }
-                                .buttonStyle(.bordered)
 
                                 Button("Save as…") {
                                     newScriptName = ""
@@ -177,10 +170,36 @@ struct ProgramizerView: View {
                                 .buttonStyle(.borderedProminent)
                                 .tint(Color.accentColor)
 
-                                Spacer()
-
-                                Button(action: { manager.clearLog() }) { Label("Clear log", systemImage: "trash") }
+//                                Spacer()
+                                
+                                HStack(spacing: 8) {
+                                    
+                                    
+                                    // Import / Export actions
+                                    Button("Import") {
+                                        Task { await importScript() }
+                                    }
                                     .buttonStyle(.bordered)
+                                    
+                                    Button("Export") {
+                                        Task { await exportScript() }
+                                    }
+                                    .buttonStyle(.bordered)
+
+
+
+                                    Button("Save as…") {
+                                        newScriptName = ""
+                                        showSaveScriptSheet = true
+                                    }
+                                    .buttonStyle(.borderedProminent)
+                                
+                                
+
+                                    Button(action: { manager.clearLog() }) { Label("Clear log", systemImage: "trash") }
+                                        .buttonStyle(.bordered)
+                                }
+
                             }
                         }
                         .padding(8)

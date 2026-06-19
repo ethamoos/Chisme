@@ -19,9 +19,9 @@
 		A100000A000000000000001 /* DMGeniusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000B000000000000001 /* DMGeniusView.swift */; };
 		A86010B12F3E2012009FCEB4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86010B02F3E2012009FCEB4 /* HelpView.swift */; };
 		A86010B32F3E20A009FCEB4 /* EXAMPLE.md in Resources */ = {isa = PBXBuildFile; fileRef = A86010B22F3E204A009FCEB4 /* EXAMPLE.md */; };
+		A86010B52F3E20A009FCEB4 /* Assets.xcassets/AppIcon.appiconset/AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A86010B42F3E20A009FCEB4 /* Assets.xcassets/AppIcon.appiconset/AppIcon.icns */; };
 		A8ED3C032FAB288D00DDBEB7 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = A8ED3C022FAB288900DDBEB7 /* LICENSE.txt */; };
 		A8ED3C052FAB28AC00DDBEB7 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A8ED3C042FAB28AC00DDBEB7 /* Credits.rtf */; };
-		A86010B52F3E20A009FCEB4 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A86010B42F3E20A009FCEB4 /* AppIcon.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,9 +39,9 @@
 		A3000001000000000000001 /* Chisme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chisme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A86010B02F3E2012009FCEB4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		A86010B22F3E204A009FCEB4 /* EXAMPLE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = EXAMPLE.md; sourceTree = "<group>"; };
+		A86010B42F3E20A009FCEB4 /* Assets.xcassets/AppIcon.appiconset/AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = com.apple.icns; path = Assets.xcassets/AppIcon.appiconset/AppIcon.icns; sourceTree = "<group>"; };
 		A8ED3C022FAB288900DDBEB7 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		A8ED3C042FAB28AC00DDBEB7 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
-		A86010B42F3E20A009FCEB4 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = "com.apple.icns"; path = "Assets.xcassets/AppIcon.appiconset/AppIcon.icns"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -72,7 +72,7 @@
 				A8ED3C022FAB288900DDBEB7 /* LICENSE.txt */,
 				A86010B02F3E2012009FCEB4 /* HelpView.swift */,
 				A86010B22F3E204A009FCEB4 /* EXAMPLE.md */,
-										A86010B42F3E20A009FCEB4 /* AppIcon.icns */,
+				A86010B42F3E20A009FCEB4 /* Assets.xcassets/AppIcon.appiconset/AppIcon.icns */,
 				A2000006000000000000001 /* Sources/Programizer/DMGManager.swift */,
 				A2000007000000000000001 /* Sources/Programizer/ProgramizerAPI.swift */,
 				A2000008000000000000001 /* Sources/DMGenius/DMGCreator.swift */,
@@ -156,11 +156,28 @@
 				A86010B32F3E20A009FCEB4 /* EXAMPLE.md in Resources */,
 				A8ED3C052FAB28AC00DDBEB7 /* Credits.rtf in Resources */,
 				A8ED3C032FAB288D00DDBEB7 /* LICENSE.txt in Resources */,
-				A86010B52F3E20A009FCEB4 /* AppIcon.icns in Resources */,
+				A86010B52F3E20A009FCEB4 /* Assets.xcassets/AppIcon.appiconset/AppIcon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A9000002000000000000001 /* Copy AppIcon ICNS */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy AppIcon ICNS";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mkdir -p \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/Resources\"\ncp -f \"${PROJECT_DIR}/Assets.xcassets/AppIcon.appiconset/AppIcon.icns\" \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/Resources/\" || true\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A9000001000000000000001 /* Sources */ = {
@@ -182,23 +199,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		A9000002000000000000001 /* Copy AppIcon ICNS */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy AppIcon ICNS";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh";
-			shellScript = "mkdir -p \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/Resources\"\ncp -f \"${PROJECT_DIR}/Assets.xcassets/AppIcon.appiconset/AppIcon.icns\" \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/Resources/\" || true\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		AB000001000000000000001 /* Debug */ = {
@@ -328,10 +328,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = T8LP25947P;
 				ENABLE_APP_SANDBOX = YES;
@@ -357,7 +358,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chisme.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -370,10 +371,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = T8LP25947P;
 				ENABLE_APP_SANDBOX = YES;
@@ -399,7 +401,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chisme.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
