@@ -17,12 +17,18 @@ let package = Package(
         .target(
             name: "ProgramizerKit",
             dependencies: [],
-            path: "Sources/Programizer"
+            path: "Sources/Programizer",
+            exclude: [
+                "ProgramizerAPI.swift"
+            ]
         ),
         .target(
             name: "DMGeniusKit",
             dependencies: [],
-            path: "Sources/DMGenius"
+            path: "Sources/DMGenius",
+            exclude: [
+                "DMGeniusAPI.swift"
+            ]
         ),
         .executableTarget(
             name: "Chisme",
