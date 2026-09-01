@@ -19,6 +19,13 @@ struct DMGeniusView: View {
 
                 .font(.system(size: 18, weight: .bold))
                 .padding(.top, 20)
+
+            AboutDisclosure(description: """
+            DMGenius builds macOS disk images (.dmg). Choose a source app or package and an output location, set the volume name and install location, and optionally include an Applications symlink.
+
+            Create a full DMG or a structure-only DMG, then inspect the underlying hdiutil command and its output in the log.
+            """)
+
             HStack {
                 Text("Source:")
                 if let sourcePath = config.sourceURL?.path {

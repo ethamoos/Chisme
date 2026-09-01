@@ -53,6 +53,14 @@ struct ContentView: View {
                             .font(.subheadline)
                             .foregroundColor(.secondary)
 
+                        AboutDisclosure(description: """
+                        The File Management tab helps you organise files in two ways:
+
+                        • Sort A (Move Files): matches loose files in a source folder to existing folders of the same name in a target folder, then moves each file into its matching folder.
+
+                        • Sort B (Sorting): groups similar items together by filename similarity (using a Levenshtein ratio you can tune), optionally creating a folder for each group and moving the items in.
+                        """)
+
                         // Sub-tabs: segmented control to switch between Move and Sorting
                         Picker("Mode", selection: $fileManagementMode) {
                             Text("Sort A").tag(0)
@@ -270,6 +278,9 @@ struct ContentView: View {
                     Text("Custom")
                         .font(.title2)
                         .padding(.top, 20)
+
+                    AboutDisclosure(description: "The Custom tab is a placeholder for your own actions and settings. Future custom tools and shortcuts can be added here.")
+
                     Text("Add your custom actions or settings here.")
                         .foregroundColor(.secondary)
                         .padding(.top, 8)

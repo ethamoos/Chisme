@@ -51,6 +51,13 @@ struct ProgramizerView: View {
             }
             .padding(.horizontal)
 
+            AboutDisclosure(description: """
+            Programizer batch-processes disk images and folders. Scan a folder for .dmg files, mount them all at once, then run a custom shell script inside each mounted volume.
+
+            You can also switch to File Processing to run a script against every item in a chosen folder. Scripts can be saved, loaded, imported and exported for reuse, and all activity is shown in the log.
+            """)
+            .padding(.horizontal)
+
             // Processing mode selector moved to top of the Programizer area
             HStack {
                 Spacer()
