@@ -41,12 +41,14 @@ struct ProgramizerView: View {
                         .foregroundColor(.secondary)
                 }
                 Spacer()
-                HStack(spacing: 8) {
-                    Button(action: { manager.scanForDMGs() }) { Label("Scan", systemImage: "magnifyingglass") }
-                        .buttonStyle(.bordered)
-                    Button(action: { Task { await manager.mountAll() } }) { Label("Mount All", systemImage: "externaldrive.badge.plus") }
-                        .buttonStyle(.borderedProminent)
-                        .tint(Color.accentColor)
+                if processingTab == 0 {
+                    HStack(spacing: 8) {
+                        Button(action: { manager.scanForDMGs() }) { Label("Scan", systemImage: "magnifyingglass") }
+                            .buttonStyle(.bordered)
+                        Button(action: { Task { await manager.mountAll() } }) { Label("Mount All", systemImage: "externaldrive.badge.plus") }
+                            .buttonStyle(.borderedProminent)
+                            .tint(Color.accentColor)
+                    }
                 }
             }
             .padding(.horizontal)
@@ -73,28 +75,31 @@ struct ProgramizerView: View {
 
             HStack(alignment: .top, spacing: 16) {
                 VStack(spacing: 12) {
-                    GroupBox(label: Label("Folder & Options", systemImage: "folder")) {
+                    GroupBox(label: Label(processingTab == 0 ? "Folder & Options" : "Options",
+                                          systemImage: processingTab == 0 ? "folder" : "gearshape")) {
                         VStack(alignment: .leading, spacing: 10) {
-                            HStack {
-                                Text("Folder to scan for .dmg files:")
+                            if processingTab == 0 {
+                                HStack {
+                                    Text("Folder to scan for .dmg files:")
+                                        .font(.caption)
+                                    Spacer()
+                                }
+                                HStack {
+                                    Text(manager.folderPath?.path ?? "No folder selected")
+                                        .lineLimit(1)
+                                        .truncationMode(.middle)
+                                    Spacer()
+                                    Button("Choose Folder") { chooseFolder() }
+                                        .buttonStyle(.bordered)
+                                }
+
+                                Divider()
+
+                                Text("Relative path to run inside each mounted volume:")
                                     .font(.caption)
-                                Spacer()
+                                TextField("/Path/To/AppOrPkg", text: $relativePath)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
                             }
-                            HStack {
-                                Text(manager.folderPath?.path ?? "No folder selected")
-                                    .lineLimit(1)
-                                    .truncationMode(.middle)
-                                Spacer()
-                                Button("Choose Folder") { chooseFolder() }
-                                    .buttonStyle(.bordered)
-                            }
-
-                            Divider()
-
-                            Text("Relative path to run inside each mounted volume:")
-                                .font(.caption)
-                            TextField("/Path/To/AppOrPkg", text: $relativePath)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
 
                             HStack {
                                 Text("Delay between runs:")
@@ -157,25 +162,17 @@ struct ProgramizerView: View {
                                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray.opacity(0.2)))
 
                             HStack {
-                                Button(action: {
-                                    Task {
-                                        if processingTab == 0 {
+                                if processingTab == 0 {
+                                    Button(action: {
+                                        Task {
                                             // DMG processing: run the script on mounted DMGs
                                             let success = await manager.runScriptOnMounted(delaySeconds: Int(delaySeconds), requireAdmin: runAsAdmin)
-                                                manager.appendLog("DMG script run completed: success=\(success)")
-                                        } else {
-                                            // Folder processing: run script on every item in selected folder
-                                            guard let folder = folderProcessPath else {
-                                                manager.appendLog("No folder selected for File Processing")
-                                                return
-                                            }
-                                            let success = await runScriptOnFolder(folder: folder, delaySeconds: Int(delaySeconds), requireAdmin: runAsAdmin)
-                                            manager.appendLog("Folder script run completed: success=\(success)")
+                                            manager.appendLog("DMG script run completed: success=\(success)")
                                         }
-                                    }
-                                }) { Label("Run", systemImage: "play.fill") }
-                                .buttonStyle(.borderedProminent)
-                                .tint(Color.accentColor)
+                                    }) { Label("Run on mounted volumes", systemImage: "play.fill") }
+                                    .buttonStyle(.borderedProminent)
+                                    .tint(Color.accentColor)
+                                }
 
 //                                Spacer()
                                 
@@ -313,8 +310,10 @@ struct ProgramizerView: View {
                                         let success = await runScriptOnFolder(folder: folder, delaySeconds: Int(delaySeconds), requireAdmin: runAsAdmin)
                                         manager.appendLog("Folder processing completed: success=\(success)")
                                     }
-                                }) { Text("Run script on folder items") }
+                                }) { Label("Run script on folder items", systemImage: "play.fill") }
                                 .buttonStyle(.borderedProminent)
+                                .tint(Color.accentColor)
+                                .disabled(folderProcessPath == nil)
 
                                 Spacer()
                             }
@@ -494,6 +493,18 @@ struct ProgramizerView: View {
         }
     }
 
+    // Wrap a string in single quotes for safe POSIX shell usage.
+    private func shellQuoted(_ s: String) -> String {
+        return "'" + s.replacingOccurrences(of: "'", with: "'\\''") + "'"
+    }
+
+    // Escape a string for embedding inside an AppleScript double-quoted string.
+    private func appleScriptEscaped(_ s: String) -> String {
+        return s
+            .replacingOccurrences(of: "\\", with: "\\\\")
+            .replacingOccurrences(of: "\"", with: "\\\"")
+    }
+
     // Run the current script on every item in the specified folder. Returns true if all runs returned 0 exit.
     private func runScriptOnFolder(folder: URL, delaySeconds: Int, requireAdmin: Bool) async -> Bool {
         let scriptText = manager.customScript.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -539,11 +550,9 @@ struct ProgramizerView: View {
         for item in items {
             manager.appendLog("Running script on item: \(item.path)")
             if requireAdmin {
-                // Build inner command to set env and call script with arg = item path
-                let escScript = tmpFile.path.replacingOccurrences(of: "\"", with: "\\\"")
-                let escItem = item.path.replacingOccurrences(of: "\"", with: "\\\"")
-                let inner = "TARGET=\"\(escItem)\" \"\(escScript)\" \"\(escItem)\""
-                let apple = "do shell script \"\(inner.replacingOccurrences(of: "\"", with: "\\\""))\" with administrator privileges"
+                // Build a properly quoted shell command, then escape it for AppleScript.
+                let shellCommand = "TARGET=\(shellQuoted(item.path)) \(shellQuoted(tmpFile.path)) \(shellQuoted(item.path))"
+                let apple = "do shell script \"\(appleScriptEscaped(shellCommand))\" with administrator privileges"
                 let task = Process()
                 task.executableURL = URL(fileURLWithPath: "/usr/bin/osascript")
                 task.arguments = ["-e", apple]
@@ -565,9 +574,7 @@ struct ProgramizerView: View {
                 }
             } else {
                 // Run normally via /bin/sh -c with TARGET env
-                let escScript = tmpFile.path.replacingOccurrences(of: "\"", with: "\\\"")
-                let escItem = item.path.replacingOccurrences(of: "\"", with: "\\\"")
-                let wrapper = "TARGET=\"\(escItem)\" \"\(escScript)\" \"\(escItem)\""
+                let wrapper = "TARGET=\(shellQuoted(item.path)) \(shellQuoted(tmpFile.path)) \(shellQuoted(item.path))"
                 let task = Process()
                 task.executableURL = URL(fileURLWithPath: "/bin/sh")
                 task.arguments = ["-c", wrapper]
