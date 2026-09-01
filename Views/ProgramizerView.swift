@@ -53,12 +53,21 @@ struct ProgramizerView: View {
             }
             .padding(.horizontal)
 
+            #if APPSTORE
+            AboutDisclosure(description: """
+            Programizer helps you work with disk images and folders. Scan a folder for .dmg files, mount them all at once, and browse the mounted volumes in Finder.
+
+            Switch to File Processing to browse the contents of a chosen folder. All activity is shown in the log.
+            """)
+            .padding(.horizontal)
+            #else
             AboutDisclosure(description: """
             Programizer batch-processes disk images and folders. Scan a folder for .dmg files, mount them all at once, then run a custom shell script inside each mounted volume.
 
             You can also switch to File Processing to run a script against every item in a chosen folder. Scripts can be saved, loaded, imported and exported for reuse, and all activity is shown in the log.
             """)
             .padding(.horizontal)
+            #endif
 
             // Processing mode selector moved to top of the Programizer area
             HStack {
@@ -106,13 +115,16 @@ struct ProgramizerView: View {
                                     .font(.caption)
                                 Stepper(value: $delaySeconds, in: 0...600, step: 1) { Text("\(Int(delaySeconds)) s") }
                                 Spacer()
+                                #if !APPSTORE
                                 Toggle("Run as admin (prompt)", isOn: $runAsAdmin)
                                     .toggleStyle(.checkbox)
+                                #endif
                             }
                         }
                         .padding(8)
                     }
 
+                    #if !APPSTORE
                     GroupBox(label: Label("Scripts", systemImage: "terminal.fill")) {
                         VStack(alignment: .leading) {
                             // Saved scripts picker and quick actions
@@ -190,16 +202,6 @@ struct ProgramizerView: View {
                                     }
                                     .buttonStyle(.bordered)
 
-
-
-                                    Button("Save as…") {
-                                        newScriptName = ""
-                                        showSaveScriptSheet = true
-                                    }
-                                    .buttonStyle(.borderedProminent)
-                                
-                                
-
                                     Button(action: { manager.clearLog() }) { Label("Clear log", systemImage: "trash") }
                                         .buttonStyle(.bordered)
                                 }
@@ -208,6 +210,7 @@ struct ProgramizerView: View {
                         }
                         .padding(8)
                     }
+                    #endif
 
                     Spacer()
                 }
@@ -304,6 +307,7 @@ struct ProgramizerView: View {
                             }
 
                             HStack {
+                                #if !APPSTORE
                                 Button(action: {
                                     guard let folder = folderProcessPath else { return }
                                     Task {
@@ -314,6 +318,7 @@ struct ProgramizerView: View {
                                 .buttonStyle(.borderedProminent)
                                 .tint(Color.accentColor)
                                 .disabled(folderProcessPath == nil)
+                                #endif
 
                                 Spacer()
                             }
